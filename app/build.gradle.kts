@@ -30,6 +30,7 @@ android {
         versionName = "1.0"
 
         buildConfigField("String", "API_URL", "\"$apiUrl\"")
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -80,5 +81,16 @@ dependencies {
     implementation(libs.coil.network.okhttp)
     implementation(libs.androidx.exifinterface)
 
+    // Pruebas locales (src/test): corren en la JVM de tu computadora, sin emulador.
+    testImplementation(libs.junit)
+
+    // Pruebas instrumentadas (src/androidTest): corren en el emulador, con Android de verdad.
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+
     debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
